@@ -93,9 +93,10 @@ class NaukariAutomator:
             # Step 2: Click on Jobseeker Login button
             logger.info("Looking for Jobseeker Login button...")
             try:
-                jobseeker_login = self.page.locator("//*[@title='Jobseeker Login']").first
-                jobseeker_login.click()
-                logger.info("Jobseeker Login button clicked")
+                # jobseeker_login = self.page.locator("//*[@title='Jobseeker Login']").first
+                # jobseeker_login.click()
+                # logger.info("Jobseeker Login button clicked")
+                self.page.goto("https://login.naukri.com/nLogin/Login.php", wait_until="networkidle")
                 self.page.wait_for_timeout(2000)  # Wait for login modal/page to load
             except Exception as e:
                 logger.error(f"Failed to click Jobseeker Login button: {e}")
