@@ -110,7 +110,7 @@ class NaukariAutomator:
             # Step 3: Fill username field
             logger.info("Entering username...")
             try:
-                username_field = self.page.locator("//*[@placeholder='Enter your active Email ID / Username']").first
+                username_field = self.page.locator("//*[@placeholder='Enter Email ID / Username']").first
                 username_field.fill(self.username)
                 logger.info("Username entered")
             except Exception as e:
@@ -122,7 +122,7 @@ class NaukariAutomator:
             # Step 4: Fill password field
             logger.info("Entering password...")
             try:
-                password_field = self.page.locator("//*[@placeholder='Enter your password']").first
+                password_field = self.page.locator("//*[@placeholder='Enter Password']").first
                 password_field.fill(self.password)
                 logger.info("Password entered")
             except Exception as e:
