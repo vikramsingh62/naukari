@@ -1,0 +1,30 @@
+# Web Automation
+playwright==1.40.0
+
+# Scheduling
+schedule==1.2.0
+APScheduler==3.10.4
+
+# Configuration
+python-dotenv==1.0.0
+
+# Logging and monitoring
+python-json-logger==2.0.7
+
+# Testing
+pytest==7.4.3
+pytest-cov==4.1.0
+pytest-asyncio==0.21.1
+
+# Utilities
+requests==2.31.0
+python-dateutil==2.8.2
+
+# Optional: Production/Cloud (uncomment if needed)
+# google-cloud-logging==3.5.0
+# google-cloud-scheduler==2.19.0
+
+# Code quality
+pylint==3.0.3
+black==23.12.0
+isort==5.13.2

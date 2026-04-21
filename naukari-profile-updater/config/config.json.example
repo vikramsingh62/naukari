@@ -1,0 +1,8 @@
+{
+  "username": "your_naukari_email@example.com",
+  "password": "your_naukari_password",
+  "headless": false,
+  "debug": true,
+  "timeout": 30000,
+  "log_level": "INFO"
+}
