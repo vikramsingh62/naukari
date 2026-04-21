@@ -96,7 +96,7 @@ class NaukariAutomator:
                 # jobseeker_login = self.page.locator("//*[@title='Jobseeker Login']").first
                 # jobseeker_login.click()
                 # logger.info("Jobseeker Login button clicked")
-                self.page.goto("https://login.naukri.com/nLogin/Login.php", wait_until="networkidle")
+                self.page.goto("https://www.naukri.com/nlogin/login", wait_until="networkidle")
                 self.page.wait_for_timeout(2000)  # Wait for login modal/page to load
             except Exception as e:
                 logger.error(f"Failed to click Jobseeker Login button: {e}")
@@ -110,7 +110,12 @@ class NaukariAutomator:
             # Step 3: Fill username field
             logger.info("Entering username...")
             try:
-                username_field = self.page.locator('[placeholder="Enter Email ID / Username"]').first
+                # Wait explicitly for the username field to be visible
+                # self.page.wait_for_selector('#usernameField', timeout=6000)
+                self.page.wait_for_selector('#usernameField', state="visible", timeout=10000)
+                self.page.wait_for_selector('#usernameField', state="attached")
+                username_field = self.page.locator('#usernameField')
+                username_field.click()
                 username_field.fill(self.username)
                 logger.info("Username entered")
             except Exception as e:
@@ -122,7 +127,8 @@ class NaukariAutomator:
             # Step 4: Fill password field
             logger.info("Entering password...")
             try:
-                password_field = self.page.locator('[placeholder="Enter Password"]').first
+                password_field = self.page.locator('#passwordField').first
+                username_field.click()
                 password_field.fill(self.password)
                 logger.info("Password entered")
             except Exception as e:
@@ -134,6 +140,10 @@ class NaukariAutomator:
             if self.debug:
                 self.page.screenshot(path="logs/03_credentials_filled.png")
             
+
+            
+            import time, random
+            time.sleep(random.uniform(1, 2))
             # Step 5: Click login button
             logger.info("Clicking login button...")
             try:
@@ -145,7 +155,7 @@ class NaukariAutomator:
                 if self.debug:
                     self.page.screenshot(path="logs/error_login_button.png")
                 return False
-            
+            self.page.wait_for_load_state("domcontentloaded")
             # Wait for navigation to complete (allow time for potential OTP/2FA)
             try:
                 self.page.wait_for_url("**/mnjuser/**", wait_until="domcontentloaded", timeout=10000)
